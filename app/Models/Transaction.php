@@ -23,7 +23,7 @@ class Transaction extends Model
 
     public function signature()
     {
-        $this->belongsTo(Signature::class);
+        return $this->belongsTo(Signature::class);
     }
 
 }
