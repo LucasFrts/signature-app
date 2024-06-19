@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('signature_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('document');
-            $table->date('birthdate')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->foreignId('signature_id')->constrained();
+            $table->timestamp('last_updated_at');
+            $table->integer('old_plan_id');
+            $table->smallInteger('old_status');
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('signature_histories');
     }
 };
