@@ -15,12 +15,22 @@ class SignatureHistory extends Model
     protected $fillable = [
         'signature_id',
         'last_updated_at',
-        'old_plan_id',
-        'old_status'
+        'last_plan_id',
+        'last_status'
     ];
 
 
     protected $casts = [
-        'old_status' => SignatureStatus::class
+        'last_status' => SignatureStatus::class
     ];
+
+    public function signature()
+    {
+        return $this->belongsTo(Signature::class);
+    }
+
+    public function lastPlan()
+    {
+        return $this->belongsTo(Plan::class, 'id', 'last_plan_id');
+    }
 }
